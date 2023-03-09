@@ -56,9 +56,9 @@ if len(sys.argv) != 3:
 
 host, port = sys.argv[1],  int(sys.argv[2])
 
-print "[*] dcerpc-pipe-scan 0.1"
-print "[*] by p33kab00 (mudnorb@gmail.com)"
-print "[*] # of checks: %i\n" %(len(pipes))
+print("[*] dcerpc-pipe-scan 0.1")
+print("[*] by p33kab00 (mudnorb@gmail.com)")
+print(f"[*] # of pipes: {len(pipes)}")
 
 start = time.time()*1000
 bnd = 0
@@ -70,10 +70,10 @@ for pipe in pipes:
     dce = trans.get_dce_rpc()
     dce.connect()
     dce.bind(uuid.uuidtup_to_bin((pipe[3],pipe[4])))
-    print "[+] Found accessible endpoint"
-    print "    %s" %(pipe[1])
-    print "    Provider:\t%s (\PIPE\%s)" %(pipe[2],pipe[0])
-    print "    UUID:\t%s v%s\n" %(pipe[3],pipe[4])
+    print("[+] Found accessible endpoint")
+    print("    %s" %(pipe[1]))
+    print("    Provider:\t%s (\PIPE\%s)" %(pipe[2],pipe[0]))
+    print("    UUID:\t%s v%s\n" %(pipe[3],pipe[4]))
     bnd += 1
     dce.disconnect()
   except Exception as e:
@@ -81,5 +81,4 @@ for pipe in pipes:
     pass
 
 stop = time.time()*1000
-print "[*] Found %i possible bindings in %i ms." %(bnd, int(stop-start))
-
+print("[*] Found %i possible bindings in %i ms." %(bnd, int(stop-start)))
